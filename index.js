@@ -100,7 +100,7 @@ bot.on('message', function (event) {
                 case '滾':
                         return event.reply([  
                             { type: 'text', text: '哈囉！' },
-                            { type: 'image', text: LineBot.getRoomMemberProfile(roomId, userId) }
+                            { type: 'text', text: LineBot.getRoomMemberProfile(roomId, userId) }
                         ])
                         // line.client.leaveGroup(member.memberIds);
                     break;
