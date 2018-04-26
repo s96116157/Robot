@@ -98,14 +98,10 @@ bot.on('message', function (event) {
                     });
                     break;
                 case '滾':
-                    //回覆用戶
-                    isRock.LineBot.Utility.ReplyMessage(item.replyToken, "不要這樣嘛～嗚嗚嗚嗚嗚", ChannelAccessToken);
-                    //離開
-                    if (item.source.type.ToLower() == "room")
-                        isRock.LineBot.Utility.LeaveRoom(item.source.roomId, ChannelAccessToken);
-                    if (item.source.type.ToLower() == "group")
-                        isRock.LineBot.Utility.LeaveGroup(item.source.roomId, ChannelAccessToken); 
-                    //return event.reply(['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']);
+                    event.source.member().then(function (member) {
+                        return event.reply(JSON.stringify(member));
+                        line.client.leaveGroup(JSON.stringify(member))
+                    });
                     break;
                 case 'Version':
                     //event.reply('linebot@' + require('../package.json').version);
