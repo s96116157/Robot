@@ -98,11 +98,11 @@ bot.on('message', function (event) {
                     });
                     break;
                 case '滾':
-                        return event.reply([  
-                            { type: 'text', text: '哈囉！' },
-                            { type: 'text', text: LineBot.getRoomMemberProfile(roomId, userId) }
-                        ])
-                        // line.client.leaveGroup(member.memberIds);
+                    return event.reply([  
+                        { type: 'text', text: '哈囉！' },
+                        { type: 'text', text: LineBot.getRoomMemberProfile(roomId, userId) }
+                    ])
+                    // line.client.leaveGroup(member.memberIds);
                     break;
                 case 'Version':
                     //event.reply('linebot@' + require('../package.json').version);
