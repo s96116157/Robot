@@ -104,11 +104,7 @@ bot.on('message', function (event) {
                     event.reply('linebot@' + require('../package.json').version);
                     break;
                 default:
-                    event.reply(event.message.text).then(function (data) {
-                        console.log('Success', data);
-                    }).catch(function (error) {
-                        console.log('Error', error);
-                    });
+                   
                     break;
             }
             break;
@@ -128,16 +124,9 @@ bot.on('message', function (event) {
             break;
         case 'location':
             event.reply(['That\'s a good location!', 'Lat:' + event.message.latitude, 'Long:' + event.message.longitude]);
-            break;
-        case 'sticker':
-            event.reply({
-                type: 'sticker',
-                packageId: 1,
-                stickerId: 1
-            });
-            break;
+            break;       
         default:
-            event.reply('Unknow message: ' + JSON.stringify(event));
+            //event.reply('Unknow message: ' + JSON.stringify(event));
             break;
     }
 });
