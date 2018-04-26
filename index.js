@@ -97,11 +97,13 @@ bot.on('message', function (event) {
                         }
                     });
                     break;
-                case '滾':
-                    return event.reply([  
-                        { type: 'text', text: '哈囉！' },
-                        { type: 'text', text: LineBot.getRoomMemberProfile(roomId, userId) }
-                    ])
+                case 'bey':
+                    event.source.member().then(function (member) {
+                        return event.reply([  
+                            { type: 'text', text: '哈囉！' },
+                            { type: 'text', text: '不要這樣嘛～' }
+                        ])
+                    });
                     // line.client.leaveGroup(member.memberIds);
                     break;
                 case 'Version':
