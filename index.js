@@ -100,7 +100,7 @@ bot.on('message', function (event) {
                 case 'bye':
                     event.source.member().then(function (member) {
                         return event.reply([  
-                            { type: 'text', text: member.memberIds},
+                            { type: 'text', text: JSON.stringify(member.memberIds)},
                             { type: 'text', text: '不要這樣嘛～' }
                         ])
                     });
