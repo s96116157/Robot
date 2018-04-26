@@ -28,8 +28,8 @@ bot.on('message', function (event) {
                             { type: 'text', text: '早安！' + profile.displayName + ' 平安喜樂！' },
                             {
                                 type: 'image',
-                                originalContentUrl: 'https://imgur.com/gallery/0dBUGqP',
-                                previewImageUrl: 'https://imgur.com/gallery/0dBUGqP'
+                                originalContentUrl: 'https://i.imgur.com/0dBUGqP.jpg?1',
+                                previewImageUrl: 'https://i.imgur.com/0dBUGqP.jpg?1'
                             }
                         ]);
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
