@@ -24,12 +24,13 @@ bot.on('message', function (event) {
             switch (event.message.text) {
                 case 'Me':
                     event.source.profile().then(function (profile) {
-                        return event.reply('哈囉！' + profile.displayName + ' 您好！');
-                        return event.reply({
-                            type: 'sticker',
-                            packageId: 1,
-                            stickerId: 1
-                        });
+                        return event.reply([
+                            { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
+                            {
+                                type: 'sticker',
+                                packageId: 1,
+                                stickerId: 1}
+                        ]);
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
