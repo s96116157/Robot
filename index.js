@@ -99,8 +99,11 @@ bot.on('message', function (event) {
                     break;
                 case '滾':
                     event.source.member().then(function (member) {
-                        return event.reply(member.memberIds);
-                        line.client.leaveGroup(member.memberIds);
+                        return event.reply([  
+                            { type: 'text', text: '哈囉！' },
+                            {type: 'image', text: member }
+                        ])
+                        // line.client.leaveGroup(member.memberIds);
                     });
                     break;
                 case 'Version':
