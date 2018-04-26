@@ -97,7 +97,7 @@ bot.on('message', function (event) {
                         }
                     });
                     break;
-                case 'bey':
+                case 'bye':
                     event.source.member().then(function (member) {
                         return event.reply([  
                             { type: 'text', text: '哈囉！' },
