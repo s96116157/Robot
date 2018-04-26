@@ -35,7 +35,7 @@ bot.on('message', function (event) {
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
-                case 'Me':
+                case 'Meeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
                     event.source.profile().then(function (profile) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
@@ -48,19 +48,19 @@ bot.on('message', function (event) {
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
-                case 'Member':
+                case 'Memberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr':
                     event.source.member().then(function (member) {
                         return event.reply(JSON.stringify(member));
                     });
                     break;
-                case 'Picture':
+                case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
                     event.reply({
                         type: 'image',
                         originalContentUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png',
                         previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
                     });
                     break;
-                case 'Location':
+                case 'Locationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn':
                     event.reply({
                         type: 'location',
                         title: 'LINE Plus Corporation',
@@ -70,15 +70,15 @@ bot.on('message', function (event) {
                     });
                     break;
                 case 'Push':
-                    bot.push('U17448c796a01b715d293c34810985a4c', ['Hey!', 'สวัสดี ' + String.fromCharCode(0xD83D, 0xDE01)]);
+                    //bot.push('U17448c796a01b715d293c34810985a4c', ['Hey!', 'สวัสดี ' + String.fromCharCode(0xD83D, 0xDE01)]);
                     break;
                 case 'Push2':
-                    bot.push('Cba71ba25dafbd6a1472c655fe22979e2', 'Push to group');
+                    //bot.push('Cba71ba25dafbd6a1472c655fe22979e2', 'Push to group');
                     break;
                 case 'Multicast':
-                    bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
+                    //bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
                     break;
-                case 'Confirm':
+                case 'Confirmmmmmmmmmmmmmmmmmmmmmmmmmmmmm':
                     event.reply({
                         type: 'template',
                         altText: 'this is a confirm template',
@@ -98,32 +98,26 @@ bot.on('message', function (event) {
                     });
                     break;
                 case 'Multiple':
-                    return event.reply(['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']);
+                    //return event.reply(['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']);
                     break;
                 case 'Version':
-                    event.reply('linebot@' + require('../package.json').version);
+                    //event.reply('linebot@' + require('../package.json').version);
                     break;
                 default:
                    
                     break;
             }
             break;
-        case 'image':
-            event.message.content().then(function (data) {
-              const s = data.toString('hex').substring(0, 32);
-                return event.reply('Nice picture! ' + s);
-            }).catch(function (err) {
-                return event.reply(err.toString());
-            });
+        case 'image':           
             break;
         case 'video':
-            event.reply('Nice video!');
+            //event.reply('Nice video!');
             break;
         case 'audio':
-            event.reply('Nice audio!');
+            //event.reply('Nice audio!');
             break;
         case 'location':
-            event.reply(['That\'s a good location!', 'Lat:' + event.message.latitude, 'Long:' + event.message.longitude]);
+            //event.reply(['That\'s a good location!', 'Lat:' + event.message.latitude, 'Long:' + event.message.longitude]);
             break;       
         default:
             //event.reply('Unknow message: ' + JSON.stringify(event));
