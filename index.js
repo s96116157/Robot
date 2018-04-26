@@ -24,7 +24,7 @@ bot.on('message', function (event) {
             switch (event.message.text) {
                 case 'Me':
                     event.source.profile().then(function (profile) {
-                        return event.reply('Hello ' + profile.displayName + ' ' + profile.userId);
+                        return event.reply('YAYAYAYAYA!!!!!  Hello ' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
                 case 'Member':
