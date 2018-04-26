@@ -97,7 +97,14 @@ bot.on('message', function (event) {
                         }
                     });
                     break;
-                case 'Multiple':
+                case '滾':
+                    //回覆用戶
+                    isRock.LineBot.Utility.ReplyMessage(item.replyToken, "bye-bye", ChannelAccessToken);
+                    //離開
+                    if (item.source.type.ToLower() == "room")
+                        isRock.LineBot.Utility.LeaveRoom(item.source.roomId, ChannelAccessToken);
+                    if (item.source.type.ToLower() == "group")
+                        isRock.LineBot.Utility.LeaveGroup(item.source.roomId, ChannelAccessToken); 
                     //return event.reply(['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']);
                     break;
                 case 'Version':
