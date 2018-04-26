@@ -98,13 +98,11 @@ bot.on('message', function (event) {
                     });
                     break;
                 case '滾':
-                    event.source.member().then(function (member) {
                         return event.reply([  
                             { type: 'text', text: '哈囉！' },
-                            {type: 'image', text: member }
+                            { type: 'image', text: LineBot.getRoomMemberProfile(roomId, userId) }
                         ])
                         // line.client.leaveGroup(member.memberIds);
-                    });
                     break;
                 case 'Version':
                     //event.reply('linebot@' + require('../package.json').version);
