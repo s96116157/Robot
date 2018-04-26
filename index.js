@@ -2,9 +2,9 @@
 const express = require('express');
 
 const bot = linebot({
-	channelId: process.env.CHANNEL_ID,
-	channelSecret: process.env.CHANNEL_SECRET,
-	channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+    channelId: process.env.CHANNEL_ID,
+    channelSecret: process.env.CHANNEL_SECRET,
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 });
 
 const app = express();
@@ -24,7 +24,13 @@ bot.on('message', function (event) {
             switch (event.message.text) {
                 case 'Me':
                     event.source.profile().then(function (profile) {
-                        return event.reply('YAYAYAYAYA!!!!!  Hello ' + profile.displayName + ' ' + profile.userId);
+                        return event.reply('哈囉！' + profile.displayName + ' 您好！');
+                        return event.reply({
+                            type: 'sticker',
+                            packageId: 1,
+                            stickerId: 1
+                        });
+                        //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
                 case 'Member':
@@ -122,5 +128,5 @@ bot.on('message', function (event) {
 });
 
 app.listen(process.env.PORT || 80, function () {
-	console.log('LineBot is running.');
+    console.log('LineBot is running.');
 });
