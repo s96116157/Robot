@@ -21,15 +21,29 @@ app.post('/linewebhook', linebotParser);
 bot.on('message', function (event) {
     switch (event.message.type) {
         case 'text':
-            switch (event.message.text) {
+            switch (event.message.text) { 
+                case '早安':
+                    event.source.profile().then(function (profile) {
+                        return event.reply([
+                            { type: 'text', text: '早安！' + profile.displayName + ' 平安喜樂！' },
+                            {
+                                type: 'image',
+                                originalContentUrl: 'https://imgur.com/gallery/0dBUGqP',
+                                previewImageUrl: 'https://imgur.com/gallery/0dBUGqP'
+                            }
+                        ]);
+                        //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
+                    });
+                    break;
                 case 'Me':
                     event.source.profile().then(function (profile) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
                             {
-                                type: 'sticker',
-                                packageId: 1,
-                                stickerId: 1}
+                                type: 'image',
+                                originalContentUrl: 'https://imgur.com/gallery/0dBUGqP',
+                                previewImageUrl: 'https://imgur.com/gallery/0dBUGqP'
+                            }
                         ]);
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
