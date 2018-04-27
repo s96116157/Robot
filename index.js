@@ -35,18 +35,14 @@ bot.on('message', function (event) {
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
-                case 'Meeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
+                case 'Time':
                     event.source.profile().then(function (profile) {
+                        var str_time = Get_Time();
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            {
-                                type: 'text', text: '現在時間是：' + Get_Time + ' 點！'
-                                //type: 'image',
-                                //originalContentUrl: 'https://imgur.com/gallery/0dBUGqP',
-                                //previewImageUrl: 'https://imgur.com/gallery/0dBUGqP'
-                            }
+                            { type: 'text', text: '現在時間是：' + str_time + ' 點！' },
+                            { type: 'text', text: profile }
                         ]);
-                        //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
                 case 'Memberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr':
@@ -79,7 +75,7 @@ bot.on('message', function (event) {
                 case 'Multicast':
                     //bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
                     break;
-                case 'Confirmmmmmmmmmmmmmmmmmmmmmmmmmmmmm':
+                case 'Confirm':
                     event.reply({
                         type: 'template',
                         altText: 'this is a confirm template',
@@ -100,8 +96,15 @@ bot.on('message', function (event) {
                     break;
                 case 'bye':
                     event.source.member().then(function (member) {
+
+                        if (event.isGroupEvent() == true) {
+                            bot.leaveGroup(event.getGroupId()); //退出群組
+                        }
+                        else if (event.isRoomEvent() == true) {
+                            bot.leaveRoom(event.getRoomId()); //退出聊天室
+                        }
+
                         return event.reply([
-                            { type: 'text', text: JSON.stringify(member) },
                             { type: 'text', text: '不要這樣嘛～' }
                         ])
                     });
@@ -136,7 +139,7 @@ app.listen(process.env.PORT || 80, function () {
     console.log('LineBot is running.');
 });
 
-function Get_Time() {
+function _GetTime() {
     var dt = new Date();
     return dt.getDate();
 }
