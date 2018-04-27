@@ -24,7 +24,7 @@ bot.on('message', function (event) {
                 case '早安':
                     event.source.profile().then(function (profile) {
                         return event.reply([
-                            { type: 'text', text: '早安！' + profile.displayName + ' 平安喜樂！' },
+                            { type: 'text', text: '早安！' + profile.displayName + ' 平安喜樂 ！' },
                             {
                                 type: 'image',
                                 originalContentUrl: 'https://i.imgur.com/0dBUGqP.jpg?1',
