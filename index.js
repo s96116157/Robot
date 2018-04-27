@@ -51,11 +51,11 @@ bot.on('message', function (event) {
                         confirm.setNegativeAction('Cancel', 'cannel');
 
                         return event.reply().then(function (data) {
-                            [
-                                { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                                { type: 'text', text: JSON.stringify(profile) }
-                                //, { confirm }
-                            ]
+                            //[
+                            //    { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
+                            //    { type: 'text', text: JSON.stringify(profile) }
+                            //    //, { confirm }
+                            //]
                         }).catch(function (error) {
                             return event.reply(error);
                             // add your code when error.
