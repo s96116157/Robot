@@ -38,7 +38,7 @@ bot.on('message', function (event) {
                     event.source.profile().then(function (profile) {
                         var dt = new Date().getHours() + 8;
 
-                         event.reply([
+                        event.reply([
                             { type: 'text', text: '現在時間：' + dt + ' 點！' }
                         ]);
                     })
@@ -46,14 +46,14 @@ bot.on('message', function (event) {
                 case 'Time':
                     event.source.profile().then(function (profile) {
 
-                         event.reply([
+                        event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: JSON.stringify(profile) },
-                            { type: 'text', text: bot.getUserProfile(profile.userId) }
+                            { type: 'text', text: JSON.stringify(profile) }
+                            //{ type: 'text', text: bot.getUserProfile(profile.userId) }
                         ]);
 
                     }).catch(function (error) {
-                         event.reply('失敗囉');
+                        event.reply('失敗囉');
                         // add your code when error.
                     });
                     break;
@@ -61,9 +61,9 @@ bot.on('message', function (event) {
                     event.source.member().then(function (member) {
                         //var sticker = new LINEBot.getGroupMember(event.source.groupId);
                         //return event.reply(JSON.stringify(member));
-                         event.reply(member.toString());
+                        event.reply(JSON.stringify(member));
                     }).catch(function (error) {
-                         event.reply('失敗囉');
+                        event.reply('失敗囉');
                         // add your code when error.
                     });
                     break;
