@@ -48,13 +48,16 @@ bot.on('message', function (event) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
                             { type: 'text', text: JSON.stringify(profile) }
-                        ]);
+                        ]).catch(function (error) {
+                            return event.reply(error);
+                            // add your code when error.
+                        });
                     });
                     break;
                 case 'Group':
-                    event.source.groupId().then(function (groupId) {
-                        LineBot.getGroupMember(event.source.groupId);
-                        return event.reply(groupId.groupId);
+                    event.source.member().then(function (member) {
+                        var sticker = new LINEBot.getGroupMember(event.source.groupId);
+                        return event.reply(sticker);
                     }).catch(function (error) {
                         return event.reply(error);
                         // add your code when error.
