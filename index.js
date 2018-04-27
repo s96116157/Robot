@@ -17,11 +17,6 @@ app.get('/', function (req, res) {
 
 app.post('/linewebhook', linebotParser);
 
-var str_time = function () {
-    var dt = new Date();
-    return dt;
-};
-
 bot.on('message', function (event) {
     switch (event.message.type) {
         case 'text':
@@ -43,7 +38,7 @@ bot.on('message', function (event) {
                     event.source.profile().then(function (profile) {
                         var dt = new Date();
                         return event.reply([
-                            { type: 'text', text: '哈囉！' + dt }
+                            { type: 'text', text: '現在時間：' + dt.getHours() + ' 點！' }
                         ]);
                     });
                     break;
@@ -51,14 +46,13 @@ bot.on('message', function (event) {
                     event.source.profile().then(function (profile) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: '現在時間是：' + str_time + ' 點！' },
                             { type: 'text', text: profile }
                         ]);
                     });
                     break;
-                case 'Memberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr':
-                    event.source.member().then(function (member) {
-                        return event.reply(JSON.stringify(member));
+                case 'Group':
+                    event.source.groupId().then(function (groupId) {
+                        return event.reply(groupId);
                     });
                     break;
                 case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
