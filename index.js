@@ -35,6 +35,14 @@ bot.on('message', function (event) {
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
                     });
                     break;
+                case 'Time2':
+                    event.source.profile().then(function (profile) {
+                        var dt = new Date();
+                        return event.reply([
+                            { type: 'text', text: '哈囉！' + dt }
+                        ]);
+                    });
+                    break;
                 case 'Time':
                     event.source.profile().then(function (profile) {
                         var str_time = _GetTime();
@@ -140,6 +148,6 @@ app.listen(process.env.PORT || 80, function () {
 });
 
 function _GetTime() {
-    var dt = new Date();
-    return dt.getDate();
+    //var dt = new Date();
+    return '測試';
 }
