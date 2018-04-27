@@ -45,9 +45,16 @@ bot.on('message', function (event) {
                     break;
                 case 'Time':
                     event.source.profile().then(function (profile) {
+
+                        var confirm = new LINEBot.ConfirmTemplateBuilder();
+                        confirm.setMessage('Are you sure?');
+                        confirm.setPositiveAction('OK', 'ok');
+                        confirm.setNegativeAction('Cancel', 'cannel');
+
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: JSON.stringify(profile) }
+                            { type: 'text', text: JSON.stringify(profile) },
+                            { type: 'text', text: confirm }
                         ]).catch(function (error) {
                             return event.reply(error);
                             // add your code when error.
@@ -57,7 +64,8 @@ bot.on('message', function (event) {
                 case 'Group':
                     event.source.member().then(function (member) {
                         //var sticker = new LINEBot.getGroupMember(event.source.groupId);
-                        return event.reply(JSON.stringify(member));
+                        //return event.reply(JSON.stringify(member));
+                        return event.reply(member);
                     });
                     break;
                 case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
