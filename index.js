@@ -47,7 +47,7 @@ bot.on('message', function (event) {
                     event.source.profile().then(function (profile) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: JSON.stringify(profile.123) }
+                            { type: 'text', text: JSON.stringify(profile) }
                         ]).catch(function (error) {
                             return event.reply(error);
                             // add your code when error.
