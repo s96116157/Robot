@@ -17,6 +17,10 @@ app.get('/', function (req, res) {
 
 app.post('/linewebhook', linebotParser);
 
+var str_time = function () {
+    var dt = new Date();
+    return dt;
+};
 
 bot.on('message', function (event) {
     switch (event.message.type) {
@@ -45,7 +49,6 @@ bot.on('message', function (event) {
                     break;
                 case 'Time':
                     event.source.profile().then(function (profile) {
-                        var str_time = _GetTime();
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
                             { type: 'text', text: '現在時間是：' + str_time + ' 點！' },
@@ -146,8 +149,3 @@ bot.on('message', function (event) {
 app.listen(process.env.PORT || 80, function () {
     console.log('LineBot is running.');
 });
-
-function _GetTime() {
-    //var dt = new Date();
-    return '測試';
-}
