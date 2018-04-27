@@ -45,19 +45,14 @@ bot.on('message', function (event) {
                     break;
                 case 'Time':
                     event.source.profile().then(function (profile) {
-                        var confirm = new LINEBot.ConfirmTemplateBuilder();
-                        confirm.setMessage('Are you sure?');
-                        confirm.setPositiveAction('OK', 'ok');
-                        confirm.setNegativeAction('Cancel', 'cannel');
 
                         return event.reply().then(function (data) {
-                            //[
-                            //    { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            //    { type: 'text', text: JSON.stringify(profile) }
-                            //    //, { confirm }
-                            //]
+                            [
+                                { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
+                                { type: 'text', text: JSON.stringify(profile) }
+                            ]
                         }).catch(function (error) {
-                            return event.reply(error);
+                            return event.reply('成功');
                             // add your code when error.
                         });
 
