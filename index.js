@@ -36,23 +36,28 @@ bot.on('message', function (event) {
                     break;
                 case 'Time2':
                     event.source.profile().then(function (profile) {
-                        var dt = new Date();
+                        var dt = new Date().getHours() + 8;
+
                         return event.reply([
-                            { type: 'text', text: '現在時間：' + dt.getHours() + ' 點！' }
+                            { type: 'text', text: '現在時間：' + dt + ' 點！' }
                         ]);
-                    });
+                    })
                     break;
                 case 'Time':
                     event.source.profile().then(function (profile) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: profile.toString() }
+                            { type: 'text', text: JSON.stringify(profile) }
                         ]);
                     });
                     break;
                 case 'Group':
                     event.source.groupId().then(function (groupId) {
+                        LineBot.getGroupMember(event.source.groupId);
                         return event.reply(groupId.groupId);
+                    }).catch(function (error) {
+                        return event.reply(error);
+                        // add your code when error.
                     });
                     break;
                 case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
