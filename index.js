@@ -11,7 +11,7 @@ const app = express();
 
 const linebotParser = bot.parser();
 
-app.get('/',function(req,res){
+app.get('/', function (req, res) {
     res.send('Hello World!!!!!!!!!!  YA!! YA!! YA!!');
 });
 
@@ -21,7 +21,7 @@ app.post('/linewebhook', linebotParser);
 bot.on('message', function (event) {
     switch (event.message.type) {
         case 'text':
-            switch (event.message.text) { 
+            switch (event.message.text) {
                 case '早安':
                     event.source.profile().then(function (profile) {
                         return event.reply([
@@ -40,9 +40,10 @@ bot.on('message', function (event) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
                             {
-                                type: 'image',
-                                originalContentUrl: 'https://imgur.com/gallery/0dBUGqP',
-                                previewImageUrl: 'https://imgur.com/gallery/0dBUGqP'
+                                type: 'text', text: '現在時間是：' + Get_Time + ' 點！'
+                                //type: 'image',
+                                //originalContentUrl: 'https://imgur.com/gallery/0dBUGqP',
+                                //previewImageUrl: 'https://imgur.com/gallery/0dBUGqP'
                             }
                         ]);
                         //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
@@ -99,8 +100,8 @@ bot.on('message', function (event) {
                     break;
                 case 'bye':
                     event.source.member().then(function (member) {
-                        return event.reply([  
-                            { type: 'text', text: JSON.stringify(member.memberIds)},
+                        return event.reply([
+                            { type: 'text', text: JSON.stringify(member) },
                             { type: 'text', text: '不要這樣嘛～' }
                         ])
                     });
@@ -110,11 +111,11 @@ bot.on('message', function (event) {
                     //event.reply('linebot@' + require('../package.json').version);
                     break;
                 default:
-                   
+
                     break;
             }
             break;
-        case 'image':           
+        case 'image':
             break;
         case 'video':
             //event.reply('Nice video!');
@@ -124,7 +125,7 @@ bot.on('message', function (event) {
             break;
         case 'location':
             //event.reply(['That\'s a good location!', 'Lat:' + event.message.latitude, 'Long:' + event.message.longitude]);
-            break;       
+            break;
         default:
             //event.reply('Unknow message: ' + JSON.stringify(event));
             break;
@@ -134,3 +135,8 @@ bot.on('message', function (event) {
 app.listen(process.env.PORT || 80, function () {
     console.log('LineBot is running.');
 });
+
+function Get_Time() {
+    var dt = new Date();
+    return dt.getDate();
+}
