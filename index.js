@@ -46,13 +46,13 @@ bot.on('message', function (event) {
                     event.source.profile().then(function (profile) {
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: profile }
+                            { type: 'text', text: profile.toString() }
                         ]);
                     });
                     break;
                 case 'Group':
                     event.source.groupId().then(function (groupId) {
-                        return event.reply(groupId);
+                        return event.reply(groupId.groupId);
                     });
                     break;
                 case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
