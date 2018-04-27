@@ -37,7 +37,7 @@ bot.on('message', function (event) {
                     break;
                 case 'Time':
                     event.source.profile().then(function (profile) {
-                        var str_time = _Get_Time();
+                        var str_time = _GetTime();
                         return event.reply([
                             { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
                             { type: 'text', text: '現在時間是：' + str_time + ' 點！' },
