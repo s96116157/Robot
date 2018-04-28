@@ -12,7 +12,7 @@ const app = express();
 const linebotParser = bot.parser();
 
 app.get('/', function (req, res) {
-    console.log('LineBot is running.');
+    console.log('媽我在這！！');
     res.send('Hello World !!');
 });
 
