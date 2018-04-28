@@ -124,12 +124,8 @@ bot.on('message', function (event) {
 
                         var gid = profile.groupId;
                         console.log('GroupID : ' + gid);
-                        if (event.isGroupEvent() == true) {
-                            bot.leaveGroup(gid); //退出群組
-                        }
-                        else if (event.isRoomEvent() == true) {
-                            bot.leaveRoom(gid); //退出聊天室
-                        }
+                        bot.leaveGroup(gid); //退出群組
+                        bot.leaveRoom(gid); //退出聊天室
                     });
                     // line.client.leaveGroup(member.memberIds);
                     break;
