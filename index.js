@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
 app.post('/linewebhook', linebotParser);
 
 bot.on('message', function (event) {
+    console.log('LINE BOT 執行讀取訊息！！');
     switch (event.message.type) {
         case 'text':
             switch (event.message.text) {
@@ -64,7 +65,8 @@ bot.on('message', function (event) {
                         //return event.reply(JSON.stringify(member));
                         event.reply(JSON.stringify(member));
                     }).catch(function (error) {
-                        event.reply('失敗囉');
+                        console.log('Group 錯誤！！');
+                        console.log(error);
                         // add your code when error.
                     });
                     break;
