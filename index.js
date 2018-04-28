@@ -130,6 +130,7 @@ bot.on('message', function (event) {
                     // line.client.leaveGroup(member.memberIds);
                     break;
                 case 'Version':
+                    v();
                     event.reply('Nice video!');
                     //event.reply('linebot@' + require('../package.json').version);
                     break;
@@ -158,3 +159,7 @@ bot.on('message', function (event) {
 app.listen(process.env.PORT || 80, function () {
     console.log('LineBot is running.');
 });
+
+function v() {
+    console.log('Running Function');
+}
