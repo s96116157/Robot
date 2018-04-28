@@ -64,11 +64,12 @@ bot.on('message', function (event) {
                         //var sticker = new LINEBot.getGroupMember(event.source.groupId);
                         //return event.reply(JSON.stringify(member));
                         event.reply(JSON.stringify(member));
-                    }).catch(function (error) {
-                        console.log('Group 錯誤！！');
-                        console.log(error);
-                        // add your code when error.
                     });
+                    //.catch(function (error) {
+                    //    console.log('Group 錯誤！！');
+                    //    console.log(error);
+                    //    // add your code when error.
+                    //});
                     break;
                 case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
                     event.reply({
@@ -115,18 +116,20 @@ bot.on('message', function (event) {
                     });
                     break;
                 case 'bye':
-                    event.source.member().then(function (member) {
+                    event.source.profile().then(function (profile) {
 
-                        if (event.isGroupEvent() == true) {
-                            bot.leaveGroup(event.getGroupId()); //退出群組
-                        }
-                        else if (event.isRoomEvent() == true) {
-                            bot.leaveRoom(event.getRoomId()); //退出聊天室
-                        }
-
-                        return event.reply([
+                        event.reply([
                             { type: 'text', text: '不要這樣嘛～' }
                         ])
+
+                        var gid = profile.groupId;
+                        console.log('GroupID : ' + gid);
+                        if (event.isGroupEvent() == true) {
+                            bot.leaveGroup(gid); //退出群組
+                        }
+                        else if (event.isRoomEvent() == true) {
+                            bot.leaveRoom(gid); //退出聊天室
+                        }
                     });
                     // line.client.leaveGroup(member.memberIds);
                     break;
