@@ -161,5 +161,20 @@ app.listen(process.env.PORT || 80, function () {
 });
 
 function v() {
-    console.log('Running Function');
+    console.log('Function Start...');
+    request({
+        url: "http://rate.bot.com.tw/Pages/Static/UIP003.zh-TW.htm",
+        method: "GET"
+    }, function (error, response, body) {
+        if (error || !body) {
+            return;
+        } else {
+            var $ = cheerio.load(body);
+            var target = $(".rate-content-sight.text-right.print_hide");
+            console.log(target[15].children[0].data);
+            jp = target[15].children[0].data;
+            console.log('現在日幣 ' + jp);
+        }
+    });
+    console.log('Function End...');
 }
