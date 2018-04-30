@@ -47,7 +47,7 @@ bot.on('message', function (event) {
                             { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
                         ])
 
-                        sleep(1000);
+                        sleep(10000);
 
                         var gid = profile.groupId;
                         console.log('GroupID : ' + gid);
@@ -88,9 +88,11 @@ function _getJSON() {
 }
 
 function sleep(time) {
+    console.log("SLEEP");
     var now = new Date();
     var end = new Date();
     while ((end - now) < time) {
         end = new Date();
     }
+    console.log("SLEEP END");
 }
