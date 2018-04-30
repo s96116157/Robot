@@ -19,6 +19,8 @@ app.get('/', function (req, res) {
     res.send('Hello World !!');
 });
 
+app.post('/linewebhook', linebotParser);
+
 bot.on('message', function (event) {
     if (event.message.type == 'text') {
         var msg = event.message.text;
