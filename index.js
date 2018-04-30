@@ -78,12 +78,13 @@ function _getJSON() {
     var sheet_id = "1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU";
     var project = "AKfycbzGYm641yIGwZ0Vb9a_jXiKoVOooYZfoXWJAprggzC4G0FbR6YM";
     var sheet_name = "From_002"
-    var url = "https://script.google.com/macros/s/" + project + "/exec?id=" + sheet_id + "&sheet=" + sheet_name;
-
+    //var url = "https://script.google.com/macros/s/" + project + "/exec?id=" + sheet_id + "&sheet=" + sheet_name;
+    var url = "https://script.google.com/macros/s/AKfycbzGYm641yIGwZ0Vb9a_jXiKoVOooYZfoXWJAprggzC4G0FbR6YM/exec?id=1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU&sheet=From_002"
     var url2 = "http://opendata2.epa.gov.tw/AQX.json";
 
     console.log('Function Start... v.003');
     getJSON(url, function (error, response) {
+        console.log(response);
         response.forEach(function (e, i) {
             pm[i] = [];
             pm[i][0] = e.SYSID;
