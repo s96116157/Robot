@@ -1,15 +1,19 @@
-﻿//heroku-deploy-demo.js
-var express = require("express");
-var logfmt = require("logfmt");
-var app = express();
+﻿var linebot = require('linebot');
+var express = require('express');
 
-app.use(logfmt.requestLogger());
-
-app.get('/', function (req, res) {
-    res.send('Hello World!');
+var bot = linebot({
+    channelId: process.env.CHANNEL_ID,
+    channelSecret: process.env.CHANNEL_SECRET,
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 });
 
-var port = Number(process.env.PORT || 5000);
-app.listen(port, function () {
-    console.log("Listening on " + port);
+var app = express();
+
+app.get('/', function (req, res) {
+    console.log('媽我在這！！');
+    res.send('Hello World !!');
+});
+
+app.listen(process.env.PORT || 80, function () {
+    console.log('LineBot is running.');
 });
