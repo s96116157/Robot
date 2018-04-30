@@ -76,23 +76,23 @@ app.listen(process.env.PORT || 80, function () {
 function _getJSON() {
 
     var sheet_id = "1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU";
-    var project = "AKfycbxOLElujQcy1 - ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk";
+    var project = "AKfycbzGYm641yIGwZ0Vb9a_jXiKoVOooYZfoXWJAprggzC4G0FbR6YM";
     var sheet_name = "From_002"
     var url = "https://script.google.com/macros/s/" + project + "/exec?id=" + sheet_id + "&sheet=" + sheet_name;
 
     var url2 = "http://opendata2.epa.gov.tw/AQX.json";
 
-    console.log('Function Start... v.002');
+    console.log('Function Start... v.003');
     getJSON(url, function (error, response) {
-
-        console.log(response.From_002);
-
-        //response.forEach(function (e, i) {
-        //    pm[i] = [];
-        //    pm[i][0] = e.SiteName;
-        //    pm[i][1] = e['PM2.5'] * 1;
-        //    pm[i][2] = e.PM10 * 1;
-        //});
+        response.forEach(function (e, i) {
+            pm[i] = [];
+            pm[i][0] = e.SYSID;
+            pm[i][1] = e.Form_ID;
+            //pm[i] = [];
+            //pm[i][0] = e.SiteName;
+            //pm[i][1] = e['PM2.5'] * 1;
+            //pm[i][2] = e.PM10 * 1;
+        });
     });
     console.log('Function End...');
 }
