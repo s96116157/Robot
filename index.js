@@ -84,15 +84,15 @@ function _getJSON() {
     var url2 = "http://opendata2.epa.gov.tw/AQX.json";
     var txt = "https://github.com/s96116157/Robot/blob/master/echo.json";
     console.log('Function Start... v.003');
-    getJSON(txt, function (error, response) {
+    getJSON(url2, function (error, response) {
         console.log(response);
         response.forEach(function (e, i) {
             pm[i] = [];
-            pm[i][0] = e.SYSID;
-            pm[i][1] = e.Form_ID;
+            //pm[i][0] = e.SYSID;
+            //pm[i][1] = e.Form_ID;
             //pm[i] = [];
-            //pm[i][0] = e.SiteName;
-            //pm[i][1] = e['PM2.5'] * 1;
+            pm[i][0] = e.SiteName;
+            pm[i][1] = e['PM2.5'] * 1;
             //pm[i][2] = e.PM10 * 1;
         });
     });
