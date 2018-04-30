@@ -165,12 +165,11 @@ app.listen(process.env.PORT || 80, function () {
 function v() {
     console.log('Function Start...');
 
-    app.get("http://opendata2.epa.gov.tw/AQX.json", function (req, res) {
+    app.post("http://opendata2.epa.gov.tw/AQX.json", function (req, res) {
+        var json = req.body;
         console.log('app.get');
-        console.log(JSON.stringify(req));
-        console.log(req);
-        res.status(404);
-        res.send('找不到網頁！');
+        console.log(JSON.stringify(json));
+        console.log(json);
     });
 
     //request({
