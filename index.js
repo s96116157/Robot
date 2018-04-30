@@ -35,8 +35,29 @@ bot.on('message', function (event) {
                 replyMsg = '請輸入正確的地點';
             }
         }
+
         if (replyMsg == '') {
-            replyMsg = '不知道「' + msg + '」是什麼意思 :p';
+            console.log('LINE BOT 執行讀取訊息！！');
+
+            switch (event.message.text) {
+                case 'bye':
+                    event.source.profile().then(function (profile) {
+
+                        event.reply([
+                            { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
+                        ])
+
+                        var gid = profile.groupId;
+                        console.log('GroupID : ' + gid);
+                        bot.leaveGroup(gid); //退出群組
+                        bot.leaveRoom(gid); //退出聊天室
+                    });
+                    break;
+                default:
+
+                    break;
+            }
+           // replyMsg = '不知道「' + msg + '」是什麼意思 :p';
         }
 
         event.reply(replyMsg).then(function (data) {
