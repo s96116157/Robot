@@ -82,17 +82,17 @@ function _getJSON() {
 
     var url2 = "http://opendata2.epa.gov.tw/AQX.json";
 
-    console.log('Function Start...');
+    console.log('Function Start... v.001');
     getJSON(url, function (error, response) {
 
         console.log(JSON.stringify(response));
 
-        response.forEach(function (e, i) {
-            pm[i] = [];
-            pm[i][0] = e.SiteName;
-            pm[i][1] = e['PM2.5'] * 1;
-            pm[i][2] = e.PM10 * 1;
-        });
+        //response.forEach(function (e, i) {
+        //    pm[i] = [];
+        //    pm[i][0] = e.SiteName;
+        //    pm[i][1] = e['PM2.5'] * 1;
+        //    pm[i][2] = e.PM10 * 1;
+        //});
     });
     console.log('Function End...');
 }
