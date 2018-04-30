@@ -10,10 +10,10 @@ const bot = linebot({
 
 var pm = [];
 _getJSON();
-v();
+_bot();
+//v();
 
 const app = express();
-
 const linebotParser = bot.parser();
 
 app.get('/', function (req, res) {
@@ -23,144 +23,174 @@ app.get('/', function (req, res) {
 
 app.post('/linewebhook', linebotParser);
 
-bot.on('message', function (event) {
-    console.log('LINE BOT 執行讀取訊息！！');
-    switch (event.message.type) {
-        case 'text':
-            switch (event.message.text) {
-                case '早安':
-                    event.source.profile().then(function (profile) {
-                        return event.reply([
-                            { type: 'text', text: '早安！' + profile.displayName + ' 平安喜樂 ！' },
-                            {
-                                type: 'image',
-                                originalContentUrl: 'https://i.imgur.com/0dBUGqP.jpg?1',
-                                previewImageUrl: 'https://i.imgur.com/0dBUGqP.jpg?1'
-                            }
-                        ]);
-                        //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
-                    });
-                    break;
-                case 'Time2':
-                    event.source.profile().then(function (profile) {
-                        var dt = new Date().getHours() + 8;
-
-                        event.reply([
-                            { type: 'text', text: '現在時間：' + dt + ' 點！' }
-                        ]);
-                    })
-                    break;
-                case 'Time':
-                    event.source.profile().then(function (profile) {
-
-                        event.reply([
-                            { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
-                            { type: 'text', text: JSON.stringify(profile) }
-                            //{ type: 'text', text: bot.getUserProfile(profile.userId) }
-                        ]);
-
-                    }).catch(function (error) {
-                        event.reply('失敗囉');
-                        // add your code when error.
-                    });
-                    break;
-                case 'Group':
-                    event.source.member().then(function (member) {
-                        //var sticker = new LINEBot.getGroupMember(event.source.groupId);
-                        //return event.reply(JSON.stringify(member));
-                        event.reply(JSON.stringify(member));
-                    });
-                    //.catch(function (error) {
-                    //    console.log('Group 錯誤！！');
-                    //    console.log(error);
-                    //    // add your code when error.
-                    //});
-                    break;
-                case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
-                    event.reply({
-                        type: 'image',
-                        originalContentUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png',
-                        previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
-                    });
-                    break;
-                case 'Locationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn':
-                    event.reply({
-                        type: 'location',
-                        title: 'LINE Plus Corporation',
-                        address: '1 Empire tower, Sathorn, Bangkok 10120, Thailand',
-                        latitude: 13.7202068,
-                        longitude: 100.5298698
-                    });
-                    break;
-                case 'Push':
-                    //bot.push('U17448c796a01b715d293c34810985a4c', ['Hey!', 'สวัสดี ' + String.fromCharCode(0xD83D, 0xDE01)]);
-                    break;
-                case 'Push2':
-                    //bot.push('Cba71ba25dafbd6a1472c655fe22979e2', 'Push to group');
-                    break;
-                case 'Multicast':
-                    //_getJSON();
-                    event.reply('Multicast');
-                    //bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
-                    break;
-                case 'Confirm':
-                    event.reply({
-                        type: 'template',
-                        altText: 'this is a confirm template',
-                        template: {
-                            type: 'confirm',
-                            text: 'Are you sure?',
-                            actions: [{
-                                type: 'message',
-                                label: 'Yes',
-                                text: 'yes'
-                            }, {
-                                type: 'message',
-                                label: 'No',
-                                text: 'no'
-                            }]
-                        }
-                    });
-                    break;
-                case 'bye':
-                    event.source.profile().then(function (profile) {
-
-                        event.reply([
-                            { type: 'text', text: '不要這樣嘛～' }
-                        ])
-
-                        var gid = profile.groupId;
-                        console.log('GroupID : ' + gid);
-                        bot.leaveGroup(gid); //退出群組
-                        bot.leaveRoom(gid); //退出聊天室
-                    });
-                    // line.client.leaveGroup(member.memberIds);
-                    break;
-                case 'Version':                    
-                    event.reply('Nice video!');
-                    //event.reply('linebot@' + require('../package.json').version);
-                    break;
-                default:
-
-                    break;
+function _bot() {
+    bot.on('message', function (event) {
+        if (event.message.type == 'text') {
+            var msg = event.message.text;
+            var replyMsg = '';
+            if (msg.indexOf('PM2.5') != -1) {
+                pm.forEach(function (e, i) {
+                    if (msg.indexOf(e[0]) != -1) {
+                        replyMsg = e[0] + '的 PM2.5 數值為 ' + e[1];
+                    }
+                });
+                if (replyMsg == '') {
+                    replyMsg = '請輸入正確的地點';
+                }
             }
-            break;
-        case 'image':
-            break;
-        case 'video':
-            //event.reply('Nice video!');
-            break;
-        case 'audio':
-            //event.reply('Nice audio!');
-            break;
-        case 'location':
-            //event.reply(['That\'s a good location!', 'Lat:' + event.message.latitude, 'Long:' + event.message.longitude]);
-            break;
-        default:
-            //event.reply('Unknow message: ' + JSON.stringify(event));
-            break;
-    }
-});
+            if (replyMsg == '') {
+                replyMsg = '不知道「' + msg + '」是什麼意思 :p';
+            }
+
+            event.reply(replyMsg).then(function (data) {
+                console.log(replyMsg);
+            }).catch(function (error) {
+                console.log('error');
+            });
+        }
+    });
+}
+
+function test() {
+    bot.on('message', function (event) {
+        console.log('LINE BOT 執行讀取訊息！！');
+        switch (event.message.type) {
+            case 'text':
+                switch (event.message.text) {
+                    case '早安':
+                        event.source.profile().then(function (profile) {
+                            return event.reply([
+                                { type: 'text', text: '早安！' + profile.displayName + ' 平安喜樂 ！' },
+                                {
+                                    type: 'image',
+                                    originalContentUrl: 'https://i.imgur.com/0dBUGqP.jpg?1',
+                                    previewImageUrl: 'https://i.imgur.com/0dBUGqP.jpg?1'
+                                }
+                            ]);
+                            //return event.reply('哈囉！' + profile.displayName + ' ' + profile.userId);
+                        });
+                        break;
+                    case 'Time2':
+                        event.source.profile().then(function (profile) {
+                            var dt = new Date().getHours() + 8;
+
+                            event.reply([
+                                { type: 'text', text: '現在時間：' + dt + ' 點！' }
+                            ]);
+                        })
+                        break;
+                    case 'Time':
+                        event.source.profile().then(function (profile) {
+
+                            event.reply([
+                                { type: 'text', text: '哈囉！' + profile.displayName + ' 您好！' },
+                                { type: 'text', text: JSON.stringify(profile) }
+                                //{ type: 'text', text: bot.getUserProfile(profile.userId) }
+                            ]);
+
+                        }).catch(function (error) {
+                            event.reply('失敗囉');
+                            // add your code when error.
+                        });
+                        break;
+                    case 'Group':
+                        event.source.member().then(function (member) {
+                            //var sticker = new LINEBot.getGroupMember(event.source.groupId);
+                            //return event.reply(JSON.stringify(member));
+                            event.reply(JSON.stringify(member));
+                        });
+                        //.catch(function (error) {
+                        //    console.log('Group 錯誤！！');
+                        //    console.log(error);
+                        //    // add your code when error.
+                        //});
+                        break;
+                    case 'Pictureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee':
+                        event.reply({
+                            type: 'image',
+                            originalContentUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png',
+                            previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
+                        });
+                        break;
+                    case 'Locationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn':
+                        event.reply({
+                            type: 'location',
+                            title: 'LINE Plus Corporation',
+                            address: '1 Empire tower, Sathorn, Bangkok 10120, Thailand',
+                            latitude: 13.7202068,
+                            longitude: 100.5298698
+                        });
+                        break;
+                    case 'PM2.5':
+                        //bot.push('U17448c796a01b715d293c34810985a4c', ['Hey!', 'สวัสดี ' + String.fromCharCode(0xD83D, 0xDE01)]);
+                        break;
+                    case 'Push2':
+                        //bot.push('Cba71ba25dafbd6a1472c655fe22979e2', 'Push to group');
+                        break;
+                    case 'Multicast':
+                        //_getJSON();
+                        event.reply('Multicast');
+                        //bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
+                        break;
+                    case 'Confirm':
+                        event.reply({
+                            type: 'template',
+                            altText: 'this is a confirm template',
+                            template: {
+                                type: 'confirm',
+                                text: 'Are you sure?',
+                                actions: [{
+                                    type: 'message',
+                                    label: 'Yes',
+                                    text: 'yes'
+                                }, {
+                                    type: 'message',
+                                    label: 'No',
+                                    text: 'no'
+                                }]
+                            }
+                        });
+                        break;
+                    case 'bye':
+                        event.source.profile().then(function (profile) {
+
+                            event.reply([
+                                { type: 'text', text: '不要這樣嘛～' }
+                            ])
+
+                            var gid = profile.groupId;
+                            console.log('GroupID : ' + gid);
+                            bot.leaveGroup(gid); //退出群組
+                            bot.leaveRoom(gid); //退出聊天室
+                        });
+                        // line.client.leaveGroup(member.memberIds);
+                        break;
+                    case 'Version':
+                        event.reply('Nice video!');
+                        //event.reply('linebot@' + require('../package.json').version);
+                        break;
+                    default:
+
+                        break;
+                }
+                break;
+            case 'image':
+                break;
+            case 'video':
+                //event.reply('Nice video!');
+                break;
+            case 'audio':
+                //event.reply('Nice audio!');
+                break;
+            case 'location':
+                //event.reply(['That\'s a good location!', 'Lat:' + event.message.latitude, 'Long:' + event.message.longitude]);
+                break;
+            default:
+                //event.reply('Unknow message: ' + JSON.stringify(event));
+                break;
+        }
+    });
+}
 
 app.listen(process.env.PORT || 80, function () {
     console.log('LineBot is running.');
