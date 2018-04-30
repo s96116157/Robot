@@ -166,6 +166,9 @@ function v() {
     console.log('Function Start...');
 
     app.get("http://opendata2.epa.gov.tw/AQX.json", function (req, res) {
+        console.log('app.get');
+        console.log(JSON.stringify(req));
+        console.log(req);
         res.status(404);
         res.send('找不到網頁！');
     });
