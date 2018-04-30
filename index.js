@@ -83,7 +83,7 @@ function _getJSON() {
     var url2 = "http://opendata2.epa.gov.tw/AQX.json";
 
     console.log('Function Start...');
-    getJSON(url2, function (error, response) {
+    getJSON(url, function (error, response) {
 
         console.log(JSON.stringify(response));
 
