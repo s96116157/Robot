@@ -47,7 +47,7 @@ bot.on('message', function (event) {
                             { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
                         ])
 
-                        sleep(10000);
+                        sleep(500);
 
                         var gid = profile.groupId;
                         console.log('GroupID : ' + gid);
