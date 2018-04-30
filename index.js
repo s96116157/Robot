@@ -1,6 +1,6 @@
 ﻿const linebot = require('linebot');
 const express = require('express');
-var getJSON = require('get-json');
+//var getJSON = require('get-json');
 
 const bot = linebot({
     channelId: process.env.CHANNEL_ID,
@@ -9,7 +9,7 @@ const bot = linebot({
 });
 
 var pm = [];
-_getJSON();
+//_getJSON();
 _bot();
 //v();
 
