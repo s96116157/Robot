@@ -41,18 +41,17 @@ bot.on('message', function (event) {
 
             switch (event.message.text) {
                 case 'bye':
-                    var gid;
-
                     event.source.profile().then(function (profile) {
                         event.reply([
                             { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
                         ])
-                        gid = profile.groupId;
-                    });
+                        var gid = profile.groupId;
 
-                    console.log('GroupID : ' + gid);
-                    bot.leaveGroup(gid); //退出群組
-                    bot.leaveRoom(gid); //退出聊天室
+                        console.log('GroupID : ' + gid);
+
+                        bot.leaveGroup(gid); //退出群組
+                        bot.leaveRoom(gid); //退出聊天室
+                    });
 
                     break;
                 default:
@@ -75,8 +74,19 @@ app.listen(process.env.PORT || 80, function () {
 });
 
 function _getJSON() {
+
+    var sheet_id = "1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU";
+    var project = "AKfycbxOLElujQcy1 - ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk";
+    var sheet_name = "From_002"
+    var url = "https://script.google.com/macros/s/" + project + "/exec?id=" + sheet_id + "&sheet=" + sheet_name;
+
+    var url2 = "http://opendata2.epa.gov.tw/AQX.json";
+
     console.log('Function Start...');
-    getJSON('http://opendata2.epa.gov.tw/AQX.json', function (error, response) {
+    getJSON(url2, function (error, response) {
+
+        console.log(JSON.stringify(response));
+
         response.forEach(function (e, i) {
             pm[i] = [];
             pm[i][0] = e.SiteName;
