@@ -47,6 +47,8 @@ bot.on('message', function (event) {
                             { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
                         ])
 
+                        sleep(1000);
+
                         var gid = profile.groupId;
                         console.log('GroupID : ' + gid);
                         bot.leaveGroup(gid); //退出群組
@@ -57,7 +59,7 @@ bot.on('message', function (event) {
 
                     break;
             }
-           // replyMsg = '不知道「' + msg + '」是什麼意思 :p';
+            // replyMsg = '不知道「' + msg + '」是什麼意思 :p';
         }
 
         event.reply(replyMsg).then(function (data) {
@@ -83,4 +85,12 @@ function _getJSON() {
         });
     });
     console.log('Function End...');
+}
+
+function sleep(time) {
+    var now = new Date();
+    var end = new Date();
+    while ((end - now) < time) {
+        end = new Date();
+    }
 }
