@@ -94,6 +94,8 @@ bot.on('message', function (event) {
                     //bot.push('Cba71ba25dafbd6a1472c655fe22979e2', 'Push to group');
                     break;
                 case 'Multicast':
+                    _getJSON();
+                    event.reply('Multicast');
                     //bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
                     break;
                 case 'Confirm':
@@ -162,19 +164,39 @@ app.listen(process.env.PORT || 80, function () {
 
 function v() {
     console.log('Function Start...');
-    request({
-        url: "http://rate.bot.com.tw/Pages/Static/UIP003.zh-TW.htm",
-        method: "GET"
-    }, function (error, response, body) {
-        if (error || !body) {
-            return;
-        } else {
-            var $ = cheerio.load(body);
-            var target = $(".rate-content-sight.text-right.print_hide");
-            console.log(target[15].children[0].data);
-            jp = target[15].children[0].data;
-            console.log('現在日幣 ' + jp);
-        }
+
+    app.get("http://opendata2.epa.gov.tw/AQX.json", function (req, res) {
+        res.status(404);
+        res.send('找不到網頁！');
+    });
+
+    //request({
+    //    url: "http://rate.bot.com.tw/Pages/Static/UIP003.zh-TW.htm",
+    //    method: "GET"
+    //}, function (error, response, body) {
+    //    if (error || !body) {
+    //        return;
+    //    } else {
+    //        var $ = cheerio.load(body);
+    //        var target = $(".rate-content-sight.text-right.print_hide");
+    //        console.log(target[15].children[0].data);
+    //        jp = target[15].children[0].data;
+    //        console.log('現在日幣 ' + jp);
+    //    }
+    //    });
+
+    console.log('Function End...');
+}
+
+function _getJSON() {
+    console.log('Function Start...');
+    getJSON('http://opendata2.epa.gov.tw/AQX.json', function (error, response) {
+        response.forEach(function (e, i) {
+            pm[i] = [];
+            pm[i][0] = e.SiteName;
+            pm[i][1] = e['PM2.5'] * 1;
+            pm[i][2] = e.PM10 * 1;
+        });
     });
     console.log('Function End...');
 }
