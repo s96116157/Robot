@@ -41,15 +41,19 @@ bot.on('message', function (event) {
 
             switch (event.message.text) {
                 case 'bye':
-                    event.source.profile().then(function (profile) {
-                        
-                        sleep(1000);
+                    var gid;
 
-                        var gid = profile.groupId;
-                        console.log('GroupID : ' + gid);
-                        bot.leaveGroup(gid); //退出群組
-                        bot.leaveRoom(gid); //退出聊天室
+                    event.source.profile().then(function (profile) {
+                        event.reply([
+                            { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
+                        ])
+                        gid = profile.groupId;
                     });
+
+                    console.log('GroupID : ' + gid);
+                    bot.leaveGroup(gid); //退出群組
+                    bot.leaveRoom(gid); //退出聊天室
+
                     break;
                 default:
 
@@ -84,9 +88,6 @@ function _getJSON() {
 }
 
 function sleep(time) {
-    event.reply([
-        { type: 'text', text: '輕輕的我走了，就如我輕輕的來～' }
-    ])
     console.log("SLEEP");
     var now = new Date();
     var end = new Date();
