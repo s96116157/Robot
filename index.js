@@ -82,17 +82,19 @@ function _getJSON() {
    // var url = "https://script.google.com/macros/s/AKfycbzGYm641yIGwZ0Vb9a_jXiKoVOooYZfoXWJAprggzC4G0FbR6YM/exec?id=1X5Mtln-MYBhyBRn0RveNOXCkb32A4VTzht1AIGkNvdU&sheet=From_002"
     var url = "https://script.googleusercontent.com/macros/echo?user_content_key=2KtuSbS26jWQtTCeVVCLxRogMNcs9Q3J6rZG2Wyplr8DVqdCtWjDwvFeNKxgK6-7ijZ3E3ezcRaPlPsVDdBDz04GvLV9SLn8OJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMWojr9NvTBuBLhyHCd5hHa9kwxyVAdOctIYg4SBSdu9k-m3IS2J5xHgKvKyWLLaSDbNf0LmFKQpTt56_yJz549EKQLumG9TUsY7O6EXi9VUxCG0BDbUzq3s9njy9H1eM991tXI9T9B6smYauuRThZH_FtbzwwXe895tYrEq1gHrFvqrVIJO7UzQ&lib=M8N87m5Wgvt1ePBAUHd3fUw2OPgjxcCW0";
     var url2 = "http://opendata2.epa.gov.tw/AQX.json";
+
+    //https: // raw.githubusercontent.com/:owner/:repo/master/:path
     var txt = "https://raw.githubusercontent.com/s96116157/Robot/master/echo.json";
     console.log('Function Start... v.003');
     getJSON(txt, function (error, response) {
         console.log(response);
         response.forEach(function (e, i) {
             pm[i] = [];
-            //pm[i][0] = e.SYSID;
-            //pm[i][1] = e.Form_ID;
+            pm[i][0] = e.SYSID;
+            pm[i][1] = e.Form_ID;
             //pm[i] = [];
-            pm[i][0] = e.SiteName;
-            pm[i][1] = e['PM2.5'] * 1;
+            //pm[i][0] = e.SiteName;
+            //pm[i][1] = e['PM2.5'] * 1;
             //pm[i][2] = e.PM10 * 1;
         });
     });
